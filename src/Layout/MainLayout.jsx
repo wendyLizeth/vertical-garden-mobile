@@ -5,7 +5,7 @@ import AppBar from '../Components/AppBar'
 const MainLayout = () => {
   return (
     <View style={styles.mainLayout}>
-      <Text>Main Layout</Text>
+      <Text>Main Layout🤟</Text>
       <View style={styles.barContainer}>
         <AppBar />
       </View>
