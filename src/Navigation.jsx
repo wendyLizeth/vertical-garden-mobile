@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Pressable } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import {
@@ -16,18 +16,27 @@ import Home from './Screens/Home'
 import Risks from './Screens/Risks'
 
 // icons
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome6 } from '@expo/vector-icons'
-import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 
 // Crear el contenido personalizado para el drawer
 function DrawerContent(props) {
+  const navigation = useNavigation()
+  const [activeScreen, setActiveScreen] = useState('')
+
   const CurtomDrawerItem = ({ name, component, icon }) => {
+    const handlePress = () => {
+      setActiveScreen(name) // Actualizar el estado con el nombre de la pantalla activa
+      navigation.navigate(name)
+    }
+
     return (
       <DrawerItem
         label={name}
-        onPress={() => props.navigation.navigate(name)}
+        onPress={() => {
+          props.navigation.navigate(name)
+          handlePress()
+        }}
         icon={({ color, size }) => (
           <FontAwesome6
             name={icon}
@@ -36,6 +45,10 @@ function DrawerContent(props) {
             style={{ marginRight: -22 }}
           />
         )}
+        style={{
+          backgroundColor:
+            activeScreen === name ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
+        }}
       />
     )
   }
@@ -110,7 +123,7 @@ function MyDrawer() {
         drawerStyle: {
           width: 285,
         },
-        drawerActiveTintColor: 'black',
+        drawerActiveTintColor: 'red',
         headerLeft: () => <CustomDrawerIcon />,
       }}
     >
