@@ -22,7 +22,7 @@ import { StatusBar } from 'expo-status-bar'
 // Crear el contenido personalizado para el drawer
 function DrawerContent(props) {
   const navigation = useNavigation()
-  const [activeScreen, setActiveScreen] = useState('')
+  const [activeScreen, setActiveScreen] = useState('Home')
 
   const CurtomDrawerItem = ({ name, component, icon }) => {
     const handlePress = () => {
