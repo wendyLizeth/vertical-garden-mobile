@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
+import Constants from 'expo-constants'
 
 const Historical = () => {
   return (
-    <View>
+    <ScrollView style={{ marginTop: Constants.statusBarHeight + 52}}>
       <Text>Historical screen</Text>
-    </View>
+    </ScrollView>
   )
 }
 

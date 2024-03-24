@@ -18,7 +18,7 @@ const height = Dimensions.get('window').height
 const WidthContainer = width * 0.9
 const LateralSpace = (width - WidthContainer) / 2
 const Space = 10
-const BackDropHeight = height * 0.5
+const BackDropHeight = height * 0.7
 
 const HomeSlider = (data) => {
   const images = data.data
@@ -57,7 +57,7 @@ const HomeSlider = (data) => {
                 height: BackDropHeight,
                 width,
                 position: 'absolute',
-                top: 0,
+                top: -80,
                 opacity: opacity,
               }}
             />
@@ -77,7 +77,7 @@ const HomeSlider = (data) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <BackDrop scrollX={scrollX} />
       <Animated.FlatList
         onScroll={Animated.event(
@@ -88,7 +88,7 @@ const HomeSlider = (data) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
-          paddingTop: 122,
+          paddingTop: 192,
           paddingHorizontal: LateralSpace,
         }}
         decelerationRate={0}
@@ -130,12 +130,14 @@ const HomeSlider = (data) => {
           )
         }}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginTop: -42
+  },
   posterImage: {
     width: '100%',
     height: WidthContainer * 1.4,
