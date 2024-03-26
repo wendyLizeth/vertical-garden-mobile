@@ -120,6 +120,10 @@ function MyDrawer() {
     <Drawer.Navigator
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
+        headerTintColor: 'black',
+        headerTitleStyle: {
+          fontSize: 20,
+        },
         headerShown: true,
         headerTransparent: true,
         headerLeft: () => <CustomDrawerIcon />,

@@ -21,9 +21,8 @@ const Space = 10
 const BackDropHeight = height * 0.7
 
 const HomeSlider = (data) => {
-  const images = data.data
+  const info = data.data
 
-  console.log(images)
   const scrollX = useRef(new Animated.Value(0)).current
 
   function BackDrop({ scrollX }) {
@@ -34,7 +33,7 @@ const HomeSlider = (data) => {
           StyleSheet.absoluteFillObject)
         }
       >
-        {images.map((image, index) => {
+        {info.map((item, index) => {
           const inputRange = [
             (index - 1) * WidthContainer,
             index * WidthContainer,
@@ -50,7 +49,7 @@ const HomeSlider = (data) => {
 
           return (
             <Animated.Image
-              source={{ uri: image }}
+              source={{ uri: item.image }}
               key={index}
               blurRadius={4}
               style={{
@@ -84,7 +83,7 @@ const HomeSlider = (data) => {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: true }
         )}
-        data={images}
+        data={info}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
@@ -94,7 +93,7 @@ const HomeSlider = (data) => {
         decelerationRate={0}
         snapToInterval={WidthContainer}
         scrollEventThrottle={16}
-        keyExtractor={(item) => item}
+        keyExtractor={(item, index) => index}
         renderItem={({ item, index }) => {
           const inputRange = [
             (index - 1) * WidthContainer,
@@ -124,7 +123,27 @@ const HomeSlider = (data) => {
                   transform: [{ translateY }],
                 }}
               >
-                <Image source={{ uri: item }} style={styles.posterImage} />
+                <Image
+                  source={{ uri: item.image }}
+                  style={styles.posterImage}
+                />
+                <View style={{ position: 'absolute', left: 16, bottom: 16 }}>
+                  <Text
+                    style={{ fontSize: 28, color: 'white', fontWeight: 600 }}
+                  >
+                    {item.name}
+                  </Text>
+                  <Text
+                    style={{
+                      marginLeft: 6,
+                      fontSize: 14,
+                      color: 'white',
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.date}
+                  </Text>
+                </View>
               </Animated.View>
             </View>
           )
@@ -136,7 +155,7 @@ const HomeSlider = (data) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -42
+    marginTop: -42,
   },
   posterImage: {
     width: '100%',
