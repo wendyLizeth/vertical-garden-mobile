@@ -7,7 +7,6 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from '@react-navigation/drawer'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Profile from './Screens/Profile'
 import Logout from './Screens/Logout'
 import Plants from './Screens/Plants'
@@ -19,6 +18,25 @@ import Risks from './Screens/Risks'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
+
+import { createStackNavigator } from '@react-navigation/stack'
+import SliderStackScreen from './Components/SliderStackScreen'
+
+// Stack navigation
+const HomeSliderStack = createStackNavigator()
+
+function SliderStack() {
+  return (
+    <HomeSliderStack.Navigator
+      initialRouteName='HomeStack'
+      screenOptions={{ headerShown: false }}
+    >
+      <HomeSliderStack.Screen name='HomeStack' component={Home} />
+      <HomeSliderStack.Screen name='Slider' component={SliderStackScreen} />
+      <HomeSliderStack.Screen name='Risks' component={Risks} />
+    </HomeSliderStack.Navigator>
+  )
+}
 
 // Crear el contenido personalizado para el drawer
 function DrawerContent(props) {
@@ -104,12 +122,35 @@ function CustomDrawerIcon() {
   const navigation = useNavigation()
 
   return (
-    <Pressable
-      style={{ marginLeft: 8 }}
-      onPress={() => navigation.toggleDrawer()}
-    >
-      <FontAwesome6 name='bars' size={32} color='black' />
+    <Pressable style={{}} onPress={() => navigation.toggleDrawer()}>
+      <FontAwesome6 name='bars' size={38} color='black' />
     </Pressable>
+  )
+}
+
+const CustomHeaderComponent = () => {
+  return (
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: Constants.statusBarHeight,
+        marginHorizontal: 18,
+      }}
+    >
+      <CustomDrawerIcon />
+      <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <FontAwesome6 name='plus' size={32} color='black' />
+        <FontAwesome6
+          name='user'
+          size={32}
+          color='black'
+          style={{ marginLeft: 16 }}
+        />
+      </View>
+    </View>
   )
 }
 
@@ -124,12 +165,13 @@ function MyDrawer() {
         headerTitleStyle: {
           fontSize: 20,
         },
+        header: () => <CustomHeaderComponent />,
         headerShown: true,
         headerTransparent: true,
         headerLeft: () => <CustomDrawerIcon />,
       }}
     >
-      <Drawer.Screen name='Home' component={Home}></Drawer.Screen>
+      <Drawer.Screen name='Home' component={SliderStack}></Drawer.Screen>
       <Drawer.Screen name='Profile' component={Profile}></Drawer.Screen>
       <Drawer.Screen name='Historical' component={Historical}></Drawer.Screen>
       <Drawer.Screen name='Plants' component={Plants}></Drawer.Screen>

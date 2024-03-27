@@ -11,6 +11,7 @@ import HomeSlider from '../Components/HomeSlider'
 import Slider from '../Components/Slider'
 import Constants from 'expo-constants'
 
+
 import { FontAwesome6 } from '@expo/vector-icons'
 
 const images = [
