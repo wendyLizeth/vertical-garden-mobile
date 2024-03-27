@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, createContext, useContext } from 'react'
 import { View, Text, TouchableOpacity, Pressable } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import {
@@ -18,11 +18,12 @@ import Risks from './Screens/Risks'
 // icons
 import { FontAwesome6 } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import Constants from 'expo-constants'
 
 // Crear el contenido personalizado para el drawer
 function DrawerContent(props) {
   const navigation = useNavigation()
-  const [activeScreen, setActiveScreen] = useState('')
+  const [activeScreen, setActiveScreen] = useState('Home')
 
   const CurtomDrawerItem = ({ name, component, icon }) => {
     const handlePress = () => {
@@ -67,14 +68,13 @@ function DrawerContent(props) {
           }}
         >
           <FontAwesome6
-            name='font-awesome-logo-full'
+            name='bars-staggered'
             size={32}
             color='black'
+            backgroundColor='transparent'
             style={{ marginRight: 8 }}
           />
-          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-            Título del Drawer
-          </Text>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Menu</Text>
         </View>
         <View>
           <CurtomDrawerItem name={'Home'} component={Home} icon={'house'} />
@@ -120,10 +120,12 @@ function MyDrawer() {
     <Drawer.Navigator
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
-        drawerStyle: {
-          width: 285,
+        headerTintColor: 'black',
+        headerTitleStyle: {
+          fontSize: 20,
         },
-        drawerActiveTintColor: 'red',
+        headerShown: true,
+        headerTransparent: true,
         headerLeft: () => <CustomDrawerIcon />,
       }}
     >
