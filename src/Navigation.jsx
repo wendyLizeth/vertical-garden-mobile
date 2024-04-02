@@ -7,12 +7,12 @@ import {
   DrawerContentScrollView,
   DrawerItem,
 } from '@react-navigation/drawer'
-import Profile from './Screens/Profile'
-import Logout from './Screens/Logout'
 import Plants from './Screens/Plants'
 import Historical from './Screens/Historical'
 import Home from './Screens/Home'
 import Risks from './Screens/Risks'
+import Details from './Screens/Details'
+import Configuration from './Screens/Configuration'
 
 // icons
 import { FontAwesome6 } from '@expo/vector-icons'
@@ -143,27 +143,35 @@ function DrawerContent(props) {
           style={{
             backgroundColor: 'white',
             marginTop: -32,
+            paddingBottom: 22,
             paddingTop: 22,
-            borderTopLeftRadius: 22,
-            borderTopRightRadius: 22,
+            borderRadius: 22,
+            shadowColor: 'gray',
+            shadowOpacity: 1,
+            shadowRadius: 12,
+            shadowOffset: -22,
           }}
         >
           <CurtomDrawerItem name={'Home'} component={Home} icon={'house'} />
           <CurtomDrawerItem
-            name={'Profile'}
-            component={Profile}
-            icon={'circle-user'}
+            name={'Details'}
+            component={Details}
+            icon={'tree'}
+          />
+          <CurtomDrawerItem
+            name={'Plants'}
+            component={Plants}
+            icon={'rectangle-list'}
           />
           <CurtomDrawerItem
             name={'Historical'}
             component={Historical}
             icon={'book-bookmark'}
           />
-          <CurtomDrawerItem name={'Plants'} component={Plants} icon={'tree'} />
           <CurtomDrawerItem
-            name={'Logout'}
-            component={Logout}
-            icon={'door-closed'}
+            name={'Configuration'}
+            component={Configuration}
+            icon={'gear'}
           />
         </View>
       </View>
@@ -253,10 +261,13 @@ function MyDrawer() {
       }}
     >
       <Drawer.Screen name='Home' component={SliderStack}></Drawer.Screen>
-      <Drawer.Screen name='Profile' component={Profile}></Drawer.Screen>
+      <Drawer.Screen name='Details' component={Details}></Drawer.Screen>
       <Drawer.Screen name='Historical' component={Historical}></Drawer.Screen>
       <Drawer.Screen name='Plants' component={Plants}></Drawer.Screen>
-      <Drawer.Screen name='Logout' component={Logout}></Drawer.Screen>
+      <Drawer.Screen
+        name='Configuration'
+        component={Configuration}
+      ></Drawer.Screen>
     </Drawer.Navigator>
   )
 }
