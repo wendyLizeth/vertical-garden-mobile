@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 import Constants from 'expo-constants'
 import useFetch from '../hooks/useFetch'
 
-const Profile = () => {
+const Details = () => {
   const [valeStatus, setValeStatus] = useState(null)
 
   const {
@@ -21,9 +21,9 @@ const Profile = () => {
 
   return (
     <ScrollView style={{ marginTop: Constants.statusBarHeight + 52 }}>
-      <Text>Profile screen</Text>
+      <Text>Details screen</Text>
     </ScrollView>
   )
 }
 
-export default Profile
+export default Details

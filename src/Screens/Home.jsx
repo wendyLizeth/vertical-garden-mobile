@@ -223,8 +223,8 @@ const Home = () => {
             alignItems: 'center',
             backgroundColor:
               valeStatus === false
-                ? 'rgba(92, 201, 140, 0.8)'
-                : 'rgba(46, 139, 87, 0.8)',
+                ? 'rgba(46, 139, 87, 0.6)'
+                : 'rgba(92, 201, 140, 0.9)',
             marginTop: 18,
             borderRadius: 18,
           }}
