@@ -53,6 +53,11 @@ function DrawerContent(props) {
     return (
       <DrawerItem
         label={name}
+        labelStyle={{
+          fontSize: 16,
+          fontWeight: '600',
+          color: activeScreen === name ? 'white' : 'gray',
+        }}
         onPress={() => {
           props.navigation.navigate(name)
           handlePress()
@@ -61,13 +66,16 @@ function DrawerContent(props) {
           <FontAwesome6
             name={icon}
             size={size}
-            color={color}
+            color={activeScreen === name ? 'white' : color}
             style={{ marginRight: -22 }}
           />
         )}
         style={{
+          borderRadius: 18,
+          paddingVertical: 6,
+          paddingHorizontal: 8,
           backgroundColor:
-            activeScreen === name ? 'rgba(0, 0, 0, 0.1)' : 'transparent',
+            activeScreen === name ? 'rgba(92, 201, 140, 0.8)' : 'transparent',
         }}
       />
     )
@@ -79,23 +87,67 @@ function DrawerContent(props) {
         <View
           style={{
             flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(92, 201, 140, 1)',
             alignItems: 'center',
             marginBottom: 12,
-            marginLeft: 16,
+            marginTop: -202,
+            paddingTop: 202,
+            paddingBottom: 52,
           }}
         >
-          <FontAwesome6
-            name='bars-staggered'
-            size={32}
-            color='black'
-            backgroundColor='transparent'
-            style={{ marginRight: 8 }}
-          />
-          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Menu</Text>
+          <View
+            style={{
+              width: 172,
+              height: 172,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(193, 193, 193, 1)',
+              borderRadius: 102,
+            }}
+          >
+            <FontAwesome6
+              name='user-large'
+              size={102}
+              color='white'
+              backgroundColor='transparent'
+              style={{}}
+            />
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 12,
+            }}
+          >
+            <Text style={{ fontSize: 22, fontWeight: '600', color: 'white' }}>
+              Jonh Done
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: '400',
+                color: 'white',
+                marginTop: 6,
+              }}
+            >
+              Administrator
+            </Text>
+          </View>
         </View>
-        <View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            marginTop: -32,
+            paddingTop: 22,
+            borderTopLeftRadius: 22,
+            borderTopRightRadius: 22,
+          }}
+        >
           <CurtomDrawerItem name={'Home'} component={Home} icon={'house'} />
           <CurtomDrawerItem
             name={'Profile'}
