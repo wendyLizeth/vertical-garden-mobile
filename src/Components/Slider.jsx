@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import {
   View,
   Text,
@@ -7,7 +7,10 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
+  Pressable,
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { SliderContext } from '../Context/SiderContext'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -17,6 +20,9 @@ const LateralSpace = (width - WidthContainer) / 2
 const Space = 8
 
 function Slider(data) {
+  const navigation = useNavigation()
+  const { currentSliderItem, setCurrentSliderItem } = useContext(SliderContext)
+
   const info = data.data
 
   const scrollX = useRef(new Animated.Value(0)).current
@@ -41,39 +47,47 @@ function Slider(data) {
         keyExtractor={(item, index) => index}
         renderItem={({ item, index }) => {
           return (
-            <Animated.View style={{ width: WidthContainer }}>
-              <View
-                style={{
-                  marginHorizontal: Space,
-                  padding: 0,
-                  borderRadius: 34,
-                  backgroundColor: '#fff',
-                  alignItems: 'center',
-                }}
-              >
-                <Image
-                  source={{ uri: item.image }}
-                  style={styles.posterImage}
-                />
-                <View style={{ position: 'absolute', left: 16, bottom: 16 }}>
-                  <Text
-                    style={{ fontSize: 22, color: 'white', fontWeight: 600 }}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    style={{
-                      marginLeft: 2,
-                      fontSize: 12,
-                      color: 'white',
-                      fontWeight: 600,
-                    }}
-                  >
-                    {item.date}
-                  </Text>
+            <Pressable
+              onPress={() => {
+                setCurrentSliderItem(item)
+                console.log(currentSliderItem)
+                navigation.navigate('Slider')
+              }}
+            >
+              <Animated.View style={{ width: WidthContainer }}>
+                <View
+                  style={{
+                    marginHorizontal: Space,
+                    padding: 0,
+                    borderRadius: 34,
+                    backgroundColor: '#fff',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    source={{ uri: item.image }}
+                    style={styles.posterImage}
+                  />
+                  <View style={{ position: 'absolute', left: 16, bottom: 16 }}>
+                    <Text
+                      style={{ fontSize: 22, color: 'white', fontWeight: 600 }}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text
+                      style={{
+                        marginLeft: 2,
+                        fontSize: 12,
+                        color: 'white',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {item.date}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            </Animated.View>
+              </Animated.View>
+            </Pressable>
           )
         }}
       />
