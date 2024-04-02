@@ -58,7 +58,7 @@ const Home = () => {
   const [monitoringData, setMonitoringData] = useState([])
   const [valeStatus, setValeStatus] = useState([])
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const [refreshing, setRefreshing] = useState(false)
 
@@ -221,7 +221,10 @@ const Home = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'rgba(92, 201, 140, 0.8)',
+            backgroundColor:
+              valeStatus === false
+                ? 'rgba(92, 201, 140, 0.8)'
+                : 'rgba(46, 139, 87, 0.8)',
             marginTop: 18,
             borderRadius: 18,
           }}
@@ -234,7 +237,6 @@ const Home = () => {
               padding: 16,
             }}
           >
-            {}
             {(loading && (valeStatus === false ? 'Closed' : 'Open')) ||
               'Loading...'}
           </Text>
@@ -279,13 +281,6 @@ const Home = () => {
           <Text style={styles.fastViewTitle}>Co2</Text>
         </View>
       </View>
-      {/* <View style={styles.search}>
-        <TextInput
-          style={{ color: 'gray', width: '90%' }}
-          placeholder='Search'
-        />
-        <FontAwesome6 name='magnifying-glass' size={24} color='gray' />
-      </View> */}
 
       <View>
         <Text
@@ -327,13 +322,6 @@ const Home = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      {/* <View style={{ paddingBottom: 122 }}>
-        {fetchedMonitoring.map((element, index) => (
-          <View key={index}>
-            <Text>{element.plantName}</Text>
-          </View>
-        ))}
-      </View> */}
     </ScrollView>
   )
 }
