@@ -14,12 +14,11 @@ function SliderStackScreen() {
     <ScrollView
       style={{
         flex: 1,
-        marginTop: Constants.statusBarHeight + 52,
-        marginHorizontal: 12,
+        marginHorizontal: 0,
       }}
     >
       <View>
-        <Pressable
+        {/* <Pressable
           onPress={() => navigation.navigate('HomeStack')}
           style={{
             position: 'relative',
@@ -27,12 +26,39 @@ function SliderStackScreen() {
           }}
         >
           <FontAwesome6 name='arrow-left' size={28} color='black' />
-        </Pressable>
+        </Pressable> */}
         <Image
           source={{ uri: currentSliderItem.image }}
-          style={{ width: '100%', height: 500, borderRadius: 22 }}
+          style={{
+            width: '100%',
+            height: 622,
+            marginTop: 0,
+          }}
         />
-        <Text style={{ marginTop: 0 }}>{currentSliderItem.name}</Text>
+        <View
+          style={{
+            backgroundColor: 'white',
+            marginTop: -18,
+            paddingTop: 12,
+            paddingHorizontal: 16,
+            borderTopLeftRadius: 22,
+            borderTopRightRadius: 22,
+          }}
+        >
+          <Text style={{ marginTop: 0, fontSize: 36, fontWeight: '700' }}>
+            {currentSliderItem.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: '600',
+              color: 'gray',
+              marginLeft: 8,
+            }}
+          >
+            {currentSliderItem.date}
+          </Text>
+        </View>
       </View>
     </ScrollView>
   )

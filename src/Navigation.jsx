@@ -34,6 +34,7 @@ function SliderStack() {
       <HomeSliderStack.Screen name='HomeStack' component={Home} />
       <HomeSliderStack.Screen name='Slider' component={SliderStackScreen} />
       <HomeSliderStack.Screen name='Risks' component={Risks} />
+      <HomeSliderStack.Screen name='About' component={Risks} />
     </HomeSliderStack.Navigator>
   )
 }
@@ -122,8 +123,16 @@ function CustomDrawerIcon() {
   const navigation = useNavigation()
 
   return (
-    <Pressable style={{}} onPress={() => navigation.toggleDrawer()}>
-      <FontAwesome6 name='bars' size={38} color='black' />
+    <Pressable
+      style={{
+        backgroundColor: 'rgba(224, 224, 224, 1)',
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        borderRadius: '50%',
+      }}
+      onPress={() => navigation.toggleDrawer()}
+    >
+      <FontAwesome6 name='bars' size={24} color='rgba(45, 45, 45, 1)' />
     </Pressable>
   )
 }
@@ -137,18 +146,38 @@ const CustomHeaderComponent = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: Constants.statusBarHeight,
-        marginHorizontal: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 0,
       }}
     >
       <CustomDrawerIcon />
-      <View style={{ display: 'flex', flexDirection: 'row' }}>
-        <FontAwesome6 name='plus' size={32} color='black' />
-        <FontAwesome6
-          name='user'
-          size={32}
-          color='black'
-          style={{ marginLeft: 16 }}
-        />
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <Pressable
+          style={{
+            backgroundColor: 'rgba(224, 224, 224, 1)',
+            paddingVertical: 14,
+            paddingHorizontal: 16,
+            borderRadius: '50%',
+          }}
+        >
+          <FontAwesome6 name='plus' size={24} color='rgba(45, 45, 45, 1)' />
+        </Pressable>
+        <Pressable
+          style={{
+            backgroundColor: 'rgba(224, 224, 224, 1)',
+            paddingVertical: 14,
+            paddingHorizontal: 16,
+            borderRadius: '50%',
+            marginLeft: 8,
+          }}
+        >
+          <FontAwesome6 name='user' size={24} color='rgba(45, 45, 45, 1)' />
+        </Pressable>
       </View>
     </View>
   )
@@ -163,12 +192,12 @@ function MyDrawer() {
       screenOptions={{
         headerTintColor: 'black',
         headerTitleStyle: {
-          fontSize: 20,
+          // fontSize: 20,
         },
+        headerTransparent: true,
         header: () => <CustomHeaderComponent />,
         headerShown: true,
-        headerTransparent: true,
-        headerLeft: () => <CustomDrawerIcon />,
+        // headerLeft: () => <CustomDrawerIcon />,
       }}
     >
       <Drawer.Screen name='Home' component={SliderStack}></Drawer.Screen>
