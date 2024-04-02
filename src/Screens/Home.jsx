@@ -66,18 +66,18 @@ const Home = () => {
     data: fetchedMonitoring,
     loading: monitoringLoading,
     error: monitoringError,
-  } = useFetch('http://192.168.0.109:3000/api/last-monitoring')
+  } = useFetch('https://vertical-garden-api.onrender.com/api/last-monitoring')
 
   const {
     data: status,
     loading: statusLoading,
     error: statusError,
-  } = useFetch('http://192.168.0.109:3000/api/vale')
+  } = useFetch('https://vertical-garden-api.onrender.com/api/vale')
 
   const fetchData = () => {
     setTimeout(() => {
       setLoading(true)
-      fetch('http://192.168.0.109:3000/api/last-monitoring')
+      fetch('https://vertical-garden-api.onrender.com/api/last-monitoring')
         .then((response) => response.json())
         .then((newMonitoringData) => {
           setMonitoringData(newMonitoringData)
@@ -86,7 +86,7 @@ const Home = () => {
           console.error('Error al recargar los datos de monitoreo:', error)
         })
 
-      fetch('http://192.168.0.109:3000/api/vale')
+      fetch('https://vertical-garden-api.onrender.com/api/vale')
         .then((response) => response.json())
         .then((newStatus) => {
           setValeStatus(newStatus)
