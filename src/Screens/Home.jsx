@@ -17,6 +17,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 import { useNavigation } from '@react-navigation/native'
 
+import Spinner from 'react-native-loading-spinner-overlay'
+
 import useFetch from '../hooks/useFetch'
 
 const images = [
@@ -124,16 +126,22 @@ const Home = () => {
 
   if (monitoringLoading || statusLoading || monitoringError || statusError) {
     return (
-      <Text
+      <View
         style={{
-          fontSize: 102,
-          fontWeight: '500',
-          color: 'gray',
-          padding: 16,
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
         }}
       >
-        Loading...
-      </Text>
+        <Spinner
+          visible={loading}
+          textContent={'Cargando...'}
+          textStyle={{ color: 'gray' }}
+          overlayColor='white'
+          color='#689F38'
+        />
+      </View>
     )
   }
 
