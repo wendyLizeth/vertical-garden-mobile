@@ -9,7 +9,6 @@ import Monitoringregister from '../Components/Monirotingregister'
 
 
 
-
 const Details = () => {
   const [valeStatus, setValeStatus] = useState(null)
 
