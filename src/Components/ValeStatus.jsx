@@ -39,7 +39,7 @@ function ValeStatus({ valeStatus, loading }) {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor:
-            valeStatus === false
+            valeStatus !== true
               ? 'rgba(46, 139, 87, 0.6)'
               : 'rgba(92, 201, 140, 0.9)',
           marginTop: 18,
@@ -54,7 +54,7 @@ function ValeStatus({ valeStatus, loading }) {
             padding: 16,
           }}
         >
-          {(loading && (valeStatus === false ? 'Closed' : 'Open')) ||
+          {(loading && (valeStatus !== true ? 'Closed' : 'Open')) ||
             'Loading...'}
         </Text>
       </View>
