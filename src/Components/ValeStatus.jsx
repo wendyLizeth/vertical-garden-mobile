@@ -54,7 +54,6 @@ function ValeStatus({ valeStatus, loading }) {
             padding: 16,
           }}
         >
-          {console.log('Value status: ', valeStatus)}
           {(loading && (valeStatus !== true ? 'Closed' : 'Open')) ||
             'Loading...'}
         </Text>

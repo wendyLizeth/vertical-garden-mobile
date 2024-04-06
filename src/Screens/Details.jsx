@@ -3,14 +3,19 @@ import { View, Text, ScrollView } from 'react-native'
 import Constants from 'expo-constants'
 import useFetch from '../hooks/useFetch'
 import ValeStatus from '../Components/ValeStatus'
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import Monitoringregister from '../Components/Monirotingregister'
 
+
+import MonitoringRegister from '../Components/MonirotingRegister'
+import ApertureTimeModal from '../Components/ApertureTimeModal'
+import CloseTimeModal from '../Components/CloseTimeModal'
 
 
 const Details = () => {
   const [valeStatus, setValeStatus] = useState(null)
+  const [apertureModal, setApertureModal] = useState(false)
+  const [closeModal, setCloseModal] = useState(false)
 
   const {
     data: status,
@@ -26,34 +31,48 @@ const Details = () => {
   }, [status, loading, error])
 
   return (
-    <ScrollView style={{ marginTop: Constants.statusBarHeight + 52, paddingLeft: 18 }}>
+    <ScrollView
+      style={{
+        marginTop: Constants.statusBarHeight + 52,
+        paddingLeft: 18,
+      }}
+    >
       <View>
         <Text
           style={{
             fontSize: 26,
             fontWeight: '700',
             color: 'rgba(105, 105, 105, 1)',
-            marginVertical: 12,
-          }}>
-          ⌛Schedules
+            marginTop: 12,
+            marginBottom: 22,
+          }}
+        >
+          ⌛ Schedules
         </Text>
       </View>
 
-      {/*Aperture time*/}
+      {/* Aperture time */}
       <View style={{ marginRight: 16 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Info')}
+          onPress={() => setApertureModal(true)}
           style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-            borderRadius: 19,
+            backgroundColor: '#ffff',
+            borderRadius: 22,
             width: '100%',
-            marginTop: 16,
             marginBottom: 20,
-            paddingRight: 20,
+            paddingVertical: 18,
+            paddingHorizontal: 22,
+            shadowColor: 'gray',
+            shadowOpacity: 0.2,
+            shadowRadius: 12,
+            shadowOffset: {
+              width: 0,
+              height: 22,
+            },
           }}
         >
           <View>
@@ -63,8 +82,6 @@ const Details = () => {
                 fontSize: 18,
                 marginVertical: 1,
                 fontWeight: '700',
-                paddingLeft: 14,
-                paddingTop: 11,
               }}
             >
               🕐 Aperture time
@@ -73,32 +90,39 @@ const Details = () => {
               style={{
                 color: 'grey',
                 fontSize: 19,
-                marginVertical: 9,
                 fontWeight: '700',
-                paddingLeft: 25,
+                marginTop: 8,
+                paddingLeft: 12,
               }}
             >
               8:00 am
             </Text>
           </View>
-          <AntDesign name="right" size={24} color="black" />
+          <AntDesign name='right' size={24} color='black' />
         </TouchableOpacity>
-      </View >
+      </View>
 
+      {/* Close time */}
       <View style={{ marginRight: 16 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Info')}
+          onPress={() => setCloseModal(true)}
           style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+            backgroundColor: '#ffff',
             borderRadius: 19,
             width: '100%',
-            marginTop: 0,
-            marginBottom: 20,
-            paddingRight: 20,
+            paddingVertical: 18,
+            paddingHorizontal: 22,
+            shadowColor: 'gray',
+            shadowOpacity: 0.1,
+            shadowRadius: 12,
+            shadowOffset: {
+              width: 0,
+              height: 22,
+            },
           }}
         >
           <View>
@@ -106,10 +130,7 @@ const Details = () => {
               style={{
                 color: 'black',
                 fontSize: 18,
-                marginVertical: 1,
                 fontWeight: '700',
-                paddingLeft: 14,
-                paddingTop: 11,
               }}
             >
               🕧 Close time
@@ -118,15 +139,15 @@ const Details = () => {
               style={{
                 color: 'grey',
                 fontSize: 19,
-                marginVertical: 9,
                 fontWeight: '700',
-                paddingLeft: 25,
+                marginTop: 8,
+                paddingLeft: 12,
               }}
             >
               10:30 am
             </Text>
           </View>
-          <AntDesign name="right" size={24} color="black" />
+          <AntDesign name='right' size={24} color='black' />
         </TouchableOpacity>
       </View>
 
@@ -136,13 +157,17 @@ const Details = () => {
             fontSize: 19,
             fontWeight: '700',
             color: 'rgba(105, 105, 105, 1)',
-            marginVertical: 12,
-          }}>
-          📆Actual data from garden
+            marginTop: 32,
+            marginBottom: 12,
+          }}
+        >
+          📅 Actual data from garden
         </Text>
       </View>
+
       {/* Show vale status component */}
       <ValeStatus valeStatus={valeStatus} loading={loading} />
+
       <View>
         <Text
           style={{
@@ -150,15 +175,23 @@ const Details = () => {
             fontWeight: '700',
             color: 'rgba(105, 105, 105, 1)',
             marginVertical: 12,
-          }}>
-          🏡Last monitoring register
+          }}
+        >
+          🏡 Last monitoring register
         </Text>
-        <Monitoringregister valor="4°" dato="Temperatura" texto="Temperature of the air in the zone." />
-
+        <MonitoringRegister
+          valor='4°'
+          dato='Temperatura'
+          texto='Temperature of the air in the zone.'
+        />
       </View>
 
-
-    </ScrollView >
+      <ApertureTimeModal
+        openModal={apertureModal}
+        setOpenModal={setApertureModal}
+      />
+      <CloseTimeModal openModal={closeModal} setOpenModal={setCloseModal} />
+    </ScrollView>
   )
 }
 
