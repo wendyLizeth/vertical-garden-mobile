@@ -50,24 +50,32 @@ class Historical extends React.Component {
       <ScrollView
         style={{
           paddingTop: Constants.statusBarHeight + 62,
-          marginHorizontal: 16,
+          marginLeft: 18,
         }}
       >
-        <View style={{ marginTop: 22 }}>
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: '700',
+            color: 'rgba(69, 69, 69, 1)',
+          }}
+        >
+          📈 Historical
+        </Text>
+        <View style={{ marginTop: 8, paddingRight: 18 }}>
+          <PieChartExample />
+        </View>
+        <View style={{ marginTop: 22, paddingRight: 18 }}>
           <Text style={{ fontSize: 20, fontWeight: '500' }}>
             StackedAreaChart
           </Text>
           <StackedAreaExample data={this.state.data} keys={this.state.keys} />
         </View>
-        <View style={{ marginTop: 22 }}>
+        <View style={{ marginTop: 22, paddingRight: 18, marginBottom: 132 }}>
           <Text style={{ fontSize: 20, fontWeight: '500' }}>
             Progress Circle
           </Text>
           <ProgressCircleExample />
-        </View>
-        <View style={{ marginTop: 22 }}>
-          <Text style={{ fontSize: 20, fontWeight: '500' }}>Pie Chart</Text>
-          <PieChartExample />
         </View>
       </ScrollView>
     )
