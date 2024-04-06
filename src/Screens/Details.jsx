@@ -7,10 +7,12 @@ import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import MonitoringRegister from '../Components/MonirotingRegister'
 import ApertureTimeModal from '../Components/ApertureTimeModal'
+import CloseTimeModal from '../Components/CloseTimeModal'
 
 const Details = () => {
   const [valeStatus, setValeStatus] = useState(null)
-  const [timeModal, setTimeModal] = useState(false)
+  const [apertureModal, setApertureModal] = useState(false)
+  const [closeModal, setCloseModal] = useState(false)
 
   const {
     data: status,
@@ -49,7 +51,7 @@ const Details = () => {
       {/* Aperture time */}
       <View style={{ marginRight: 16 }}>
         <TouchableOpacity
-          onPress={() => setTimeModal(true)}
+          onPress={() => setApertureModal(true)}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -100,7 +102,7 @@ const Details = () => {
       {/* Close time */}
       <View style={{ marginRight: 16 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Info')}
+          onPress={() => setCloseModal(true)}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -181,7 +183,11 @@ const Details = () => {
         />
       </View>
 
-      <ApertureTimeModal timeModal={timeModal} setTimeModal={setTimeModal} />
+      <ApertureTimeModal
+        openModal={apertureModal}
+        setOpenModal={setApertureModal}
+      />
+      <CloseTimeModal openModal={closeModal} setOpenModal={setCloseModal} />
     </ScrollView>
   )
 }
