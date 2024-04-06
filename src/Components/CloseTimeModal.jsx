@@ -14,7 +14,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-function ApertureTimeModal({ openModal, setOpenModal }) {
+function CloseTimeModal({ openModal, setOpenModal }) {
   const [date, setDate] = useState(new Date())
   const [show, setShow] = useState(false)
   const [isEnabled, setIsEnabled] = useState(false)
@@ -65,7 +65,7 @@ function ApertureTimeModal({ openModal, setOpenModal }) {
           {...panResponder.panHandlers}
         >
           <View style={styles.modalContainer}>
-            <Text style={styles.title}>⏰ Update aperture time!</Text>
+            <Text style={styles.title}>⏰ Update close time!</Text>
             <View
               style={{
                 display: 'flex',
@@ -107,7 +107,7 @@ function ApertureTimeModal({ openModal, setOpenModal }) {
               }}
             >
               <Text style={{ width: '82%', color: 'rgba(69, 69, 69, 1)' }}>
-                Do you want to get a notification when the valve is open?
+                Do you want to get a notification when the valve is closed?
               </Text>
               <Switch
                 ios_backgroundColor='#3e3e3e'
@@ -124,9 +124,7 @@ function ApertureTimeModal({ openModal, setOpenModal }) {
                 marginTop: 32,
               }}
             >
-              <Text style={styles.selectedTime}>
-                The aperture time will be:{' '}
-              </Text>
+              <Text style={styles.selectedTime}>The close time will be: </Text>
               <Text
                 style={{
                   fontSize: 18,
@@ -212,4 +210,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ApertureTimeModal
+export default CloseTimeModal
