@@ -110,6 +110,7 @@ class PieChartExample extends React.PureComponent {
           <View style={{ width: 152 }}>
             {keys.map((item, index) => (
               <View
+                key={index}
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
