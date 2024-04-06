@@ -188,7 +188,7 @@ function CustomDrawerIcon() {
         backgroundColor: 'rgba(224, 224, 224, 1)',
         paddingVertical: 14,
         paddingHorizontal: 16,
-        borderRadius: '50%',
+        borderRadius: 50,
       }}
       onPress={() => navigation.toggleDrawer()}
     >
@@ -222,7 +222,7 @@ const CustomHeaderComponent = () => {
             backgroundColor: 'rgba(224, 224, 224, 1)',
             paddingVertical: 14,
             paddingHorizontal: 16,
-            borderRadius: '50%',
+            borderRadius: 50,
           }}
         >
           <FontAwesome6 name='plus' size={24} color='rgba(45, 45, 45, 1)' />
@@ -232,7 +232,7 @@ const CustomHeaderComponent = () => {
             backgroundColor: 'rgba(224, 224, 224, 1)',
             paddingVertical: 14,
             paddingHorizontal: 16,
-            borderRadius: '50%',
+            borderRadius: 50,
             marginLeft: 8,
           }}
         >
