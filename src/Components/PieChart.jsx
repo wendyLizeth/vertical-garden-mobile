@@ -29,10 +29,10 @@ class PieChartExample extends React.PureComponent {
         key,
         value: values[index],
         svg: { fill: colors[index] },
-        arc: {
-          outerRadius: 180 + values[index] + '%',
-          padAngle: label === key ? 0.05 : 0,
-        },
+        // arc: {
+        //   outerRadius: 180 + values[index] + '%',
+        //   padAngle: label === key ? 0.05 : 0,
+        // },
         onPress: () =>
           this.setState({
             selectedSlice: { label: key, value: values[index] },
@@ -42,30 +42,102 @@ class PieChartExample extends React.PureComponent {
     const deviceWidth = Dimensions.get('window').width
 
     return (
-      <View style={{ justifyContent: 'center', flex: 1 }}>
-        <PieChart
-          style={{ height: 200 }}
-          outerRadius={'40%'}
-          innerRadius={'45%'}
-          data={data}
-        />
-        <Text
-          onLayout={({
-            nativeEvent: {
-              layout: { width },
-            },
-          }) => {
-            this.setState({ labelWidth: width })
-          }}
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'start',
+          alignItems: 'left',
+          backgroundColor: '#ffff',
+          borderRadius: 32,
+          marginVertical: 18,
+          paddingVertical: 22,
+          shadowColor: 'gray',
+          shadowOpacity: 0.2,
+          shadowRadius: 12,
+          shadowOffset: 22,
+        }}
+      >
+        <View>
+          <Text
+            style={{
+              marginLeft: 32,
+              marginBottom: 12,
+              fontSize: 22,
+              fontWeight: '700',
+              color: 'rgba(69, 69, 69, 1)',
+            }}
+          >
+            Plants in the garden
+          </Text>
+        </View>
+        <View
           style={{
-            position: 'absolute',
-            top: 82,
-            left: deviceWidth / 2 - labelWidth / 2 - 18,
-            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          {`${label} \n ${value}`}
-        </Text>
+          <View style={{ justifyContent: 'center', flex: 1 }}>
+            <PieChart
+              style={{ height: 152 }}
+              outerRadius={'100%'}
+              innerRadius={'78%'}
+              data={data}
+            />
+            <Text
+              onLayout={({
+                nativeEvent: {
+                  layout: { width },
+                },
+              }) => {
+                this.setState({ labelWidth: width })
+              }}
+              style={{
+                position: 'absolute',
+                top: 58,
+                left: deviceWidth / 2 - labelWidth / 2 - 96,
+                textAlign: 'center',
+                fontWeight: '700',
+                fontSize: 14,
+                color: 'rgba(105, 105, 105, 0.6)',
+              }}
+            >
+              {`${label} \n ${value}%`}
+            </Text>
+          </View>
+          <View style={{ width: 152 }}>
+            {keys.map((item, index) => (
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: 18,
+                    width: 18,
+                    borderRadius: 50,
+                    backgroundColor: `${colors[index]}`,
+                  }}
+                ></View>
+                <Text
+                  style={{
+                    marginLeft: 6,
+                    fontWeight: '600',
+                    color: 'rgba(105, 105, 105, 1)',
+                  }}
+                >
+                  {item}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
       </View>
     )
   }
