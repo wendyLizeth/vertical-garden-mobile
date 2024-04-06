@@ -51,7 +51,7 @@ class PieChartExample extends React.PureComponent {
           backgroundColor: '#ffff',
           borderRadius: 32,
           marginVertical: 18,
-          paddingVertical: 22,
+          paddingVertical: 18,
           shadowColor: 'gray',
           shadowOpacity: 0.2,
           shadowRadius: 12,
@@ -81,7 +81,7 @@ class PieChartExample extends React.PureComponent {
         >
           <View style={{ justifyContent: 'center', flex: 1 }}>
             <PieChart
-              style={{ height: 152 }}
+              style={{ height: 132 }}
               outerRadius={'100%'}
               innerRadius={'78%'}
               data={data}
@@ -96,7 +96,7 @@ class PieChartExample extends React.PureComponent {
               }}
               style={{
                 position: 'absolute',
-                top: 58,
+                top: 48,
                 left: deviceWidth / 2 - labelWidth / 2 - 96,
                 textAlign: 'center',
                 fontWeight: '700',
@@ -119,8 +119,8 @@ class PieChartExample extends React.PureComponent {
               >
                 <View
                   style={{
-                    height: 18,
-                    width: 18,
+                    height: 16,
+                    width: 16,
                     borderRadius: 50,
                     backgroundColor: `${colors[index]}`,
                   }}

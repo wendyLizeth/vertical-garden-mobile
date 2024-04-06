@@ -6,9 +6,11 @@ import ValeStatus from '../Components/ValeStatus'
 import { AntDesign } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import MonitoringRegister from '../Components/MonirotingRegister'
+import ApertureTimeModal from '../Components/ApertureTimeModal'
 
 const Details = () => {
   const [valeStatus, setValeStatus] = useState(null)
+  const [timeModal, setTimeModal] = useState(false)
 
   const {
     data: status,
@@ -47,7 +49,7 @@ const Details = () => {
       {/* Aperture time */}
       <View style={{ marginRight: 16 }}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Info')}
+          onPress={() => setTimeModal(true)}
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -157,8 +159,10 @@ const Details = () => {
           📅 Actual data from garden
         </Text>
       </View>
+
       {/* Show vale status component */}
       <ValeStatus valeStatus={valeStatus} loading={loading} />
+
       <View>
         <Text
           style={{
@@ -176,6 +180,8 @@ const Details = () => {
           texto='Temperature of the air in the zone.'
         />
       </View>
+
+      <ApertureTimeModal timeModal={timeModal} setTimeModal={setTimeModal} />
     </ScrollView>
   )
 }
