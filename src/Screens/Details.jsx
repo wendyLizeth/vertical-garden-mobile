@@ -61,7 +61,7 @@ const Details = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             backgroundColor: '#ffff',
-            borderRadius: 22,
+            borderRadius: 20,
             width: '100%',
             marginBottom: 20,
             paddingVertical: 18,
